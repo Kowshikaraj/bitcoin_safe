@@ -1,0 +1,52 @@
+name: dummy-windows-test-sign
+permissions:
+  contents: read
+
+
+env:
+  commitHash: ''
+
+on:
+  push:
+    tags:
+      - 'test-*'
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Create empty .exe file
+        run: |
+          mkdir -p dist  # Create a directory to hold the file if it doesn't already exist
+          touch dist/Bitcoin-Safe-0-portable.exe  # Create an empty .exe file
+          touch dist/Bitcoin-Safe-0-setup.exe  # Create an empty .exe file
+
+
+      - name: Upload EXE Files from dist/
+        id: upload-unsigned-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-artifact
+          path: dist/*  # zip everything in the folder
+
+      - name: 'signing with test signing'
+        id: signpath-io
+        uses: signpath/github-action-submit-signing-request@v1.1
+        with:
+          api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
+          organization-id: '0981059c-bbd4-461c-abcf-b99bd074a723'
+          project-slug: 'bitcoin-safe'
+          signing-policy-slug: 'test-signing'
+          github-artifact-id: '${{ steps.upload-unsigned-artifact.outputs.artifact-id }}'
+          artifact-configuration-slug: 'Win'
+          wait-for-completion: true
+          output-artifact-directory: 'signpath-signed'
+
+
+      - name: Upload Signed EXE Files from signpath-signed/
+        id: upload-signed-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: signpath-signed
+          path: signpath-signed/*  # zip everything in the folder
+
