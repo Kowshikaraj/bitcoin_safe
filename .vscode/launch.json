@@ -1,0 +1,301 @@
+{
+  "version": "0.1.0",
+  "configurations": [{
+      "name": "Python: Module",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "bitcoin_safe",
+      "console": "integratedTerminal",
+      "args": [
+        // "--profile",  
+      ],
+      "preLaunchTask": "Poetry Install",
+      // "justMyCode": false
+    },
+    {
+      "name": "Pytest cbf backend",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "-vvv",
+        "--cbf",
+        "--ignore=coding_tests",
+        "--ignore=tools",
+        "--maxfail=1",
+      ],
+
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+      //  "justMyCode": false
+    },
+    {
+      "name": "Pytest fulcrum",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "-vvv",
+        "--fulcrum",
+        "--ignore=coding_tests",
+        "--ignore=tools",
+        "--maxfail=1",
+      ],
+
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+      //  "justMyCode": false
+    },
+    {
+      "name": "Pytest gui",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        // "-vvv", 
+        "--cbf",
+        "tests/gui",
+        "--ignore=coding_tests",
+        "--ignore=tools",
+        "--maxfail=1",
+        // "-s",  // Disable all capturing of outputs        
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "Pytest non-gui",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "-vvv",
+        "--cbf",
+        "--ignore=tests/gui",
+        "--ignore=tools",
+        "--maxfail=1",
+        "-s", // Disable all capturing of outputs        
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "preLaunchTask": "Poetry Install",
+    }, {
+      "name": "Pytest: Current File [fulcrum]",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "-vvv",
+        "--fulcrum",
+        "${file}",
+        "-s", // Disable all capturing of outputs        
+        "--ignore=tools",
+        "--maxfail=1",
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "preLaunchTask": "Poetry Install",
+    }, {
+      "name": "Pytest: Current File [cbf]",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "-vvv",
+        "--cbf",
+        "${file}",
+        "-s", // Disable all capturing of outputs        
+        "--ignore=tools",
+        "--maxfail=1",
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "network settings",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "bitcoin_safe.gui.qt.network_settings",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "plugins demo",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "bitcoin_safe/plugin_framework/plugins/demo_client.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "step_progress_bar",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "bitcoin_safe.gui.qt.step_progress_bar",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "p2p",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "bitcoin_safe.p2p",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "Translation update",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--update_translations"
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    }, {
+      "name": "insert_chatgpt_translations",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--insert_chatgpt_translations"
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "Translation csv to ts",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--csv_to_ts"
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "Weblate correct",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--weblate_correct"
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "Build",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--targets", "appimage", "deb", "windows",
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "Build windows",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--targets", "windows",
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "Build linux",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--targets", "appimage", "deb",
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    }, {
+      "name": "Build mac",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--targets", "mac",
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "Build Linux (Current Files)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--targets", "appimage", "deb",
+        "--commit", "None",
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    }, {
+      "name": "Build Mac (Current Files)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--targets", "mac",
+        "--commit", "None",
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    }, {
+      "name": "Build Windows (Current Files)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--targets", "windows",
+        "--commit", "None",
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    }, {
+      "name": "Sign",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--sign",
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    },
+    {
+      "name": "Lock no cache",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "tools/build.py",
+      "args": [
+        "--lock",
+      ],
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    }, {
+      "name": "Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "preLaunchTask": "Poetry Install",
+    }
+
+  ]
+}
